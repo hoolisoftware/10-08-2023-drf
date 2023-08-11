@@ -42,6 +42,28 @@ def request_parsing(request):
 def content_negotiation(request):
     '''
     Request
+        .accepted_renderer
+        .accepted_media_type
+    '''
+    print(Fore.GREEN)
+
+    print('.accepted_renderer =')
+    pprint(request.accepted_renderer)
+    print()
+
+    print('.accepted_media_type =')
+    pprint(request.accepted_media_type)
+    print()
+
+    print(Style.RESET_ALL)
+
+    return Response({'message': 'Content negotiation point. Look to console'})
+
+
+@api_view()
+def authentication(request):
+    '''
+    Request
         .user
         .auth
         .authenticators
@@ -62,4 +84,31 @@ def content_negotiation(request):
 
     print(Style.RESET_ALL)
 
-    return Response({'message': 'Content negotiation point. Look to console'})
+    return Response({'message': 'Authentication point. Look to console'})
+
+
+@api_view(['GET', 'POST'])
+def browser_enhancements(request):
+    '''
+    Request
+        .method
+        .content_type
+        .stream
+    '''
+    print(Fore.GREEN)
+
+    print('.method =')
+    pprint(request.method)
+    print()
+
+    print('.content_type =')
+    pprint(request.content_type)
+    print()
+
+    print('.stream =')
+    pprint(request.stream)
+    print()
+
+    print(Style.RESET_ALL)
+
+    return Response({'message': 'Authentication point. Look to console'})
