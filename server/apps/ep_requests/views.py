@@ -1,14 +1,7 @@
-from pprint import pprint
-from colorama import init as colorama_init
-from colorama import just_fix_windows_console
-from colorama import Fore, Back, Style # noqa
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
-just_fix_windows_console()
-colorama_init()
+from utils import print_attribute
 
 
 @api_view(['GET', 'POST'])
@@ -19,21 +12,9 @@ def request_parsing(request):
         .query_params
         .parsers
     '''
-    print(Fore.GREEN)
-
-    print('.data =')
-    pprint(request.data)
-    print()
-
-    print('.query_params =')
-    pprint(request.query_params)
-    print()
-
-    print('.parsers =')
-    pprint(request.parsers)
-    print()
-
-    print(Style.RESET_ALL)
+    print_attribute('data', request.data)
+    print_attribute('query_params', request.query_params)
+    print_attribute('parsers', request.parsers)
 
     return Response({'message': 'Request parsing point. Look to console'})
 
@@ -45,17 +26,8 @@ def content_negotiation(request):
         .accepted_renderer
         .accepted_media_type
     '''
-    print(Fore.GREEN)
-
-    print('.accepted_renderer =')
-    pprint(request.accepted_renderer)
-    print()
-
-    print('.accepted_media_type =')
-    pprint(request.accepted_media_type)
-    print()
-
-    print(Style.RESET_ALL)
+    print_attribute('accepted_renderer', request.accepted_renderer)
+    print_attribute('accepted_media_type', request.accepted_media_type)
 
     return Response({'message': 'Content negotiation point. Look to console'})
 
@@ -68,21 +40,9 @@ def authentication(request):
         .auth
         .authenticators
     '''
-    print(Fore.GREEN)
-
-    print('.user =')
-    pprint(request.user)
-    print()
-
-    print('.auth =')
-    pprint(request.auth)
-    print()
-
-    print('.authenticators =')
-    pprint(request.authenticators)
-    print()
-
-    print(Style.RESET_ALL)
+    print_attribute('user', request.user)
+    print_attribute('auth', request.auth)
+    print_attribute('authenticators', request.authenticators)
 
     return Response({'message': 'Authentication point. Look to console'})
 
@@ -95,20 +55,8 @@ def browser_enhancements(request):
         .content_type
         .stream
     '''
-    print(Fore.GREEN)
-
-    print('.method =')
-    pprint(request.method)
-    print()
-
-    print('.content_type =')
-    pprint(request.content_type)
-    print()
-
-    print('.stream =')
-    pprint(request.stream)
-    print()
-
-    print(Style.RESET_ALL)
+    print_attribute('method', request.method)
+    print_attribute('content_type', request.content_type)
+    print_attribute('attribute', request.attribute)
 
     return Response({'message': 'Authentication point. Look to console'})
